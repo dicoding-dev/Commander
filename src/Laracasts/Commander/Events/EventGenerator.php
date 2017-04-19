@@ -17,6 +17,11 @@ trait EventGenerator {
         $this->pendingEvents[] = $event;
     }
 
+    public function pendingEvents()
+    {
+        return $this->pendingEvents;
+    }
+
     /**
      * Return and reset all pending events
      *
