@@ -1,7 +1,6 @@
 <?php namespace Laracasts\Commander;
 
 use Illuminate\Support\ServiceProvider;
-use Laracasts\Commander\Console\CommandInputParser;
 
 class CommanderServiceProvider extends ServiceProvider {
 
@@ -22,8 +21,6 @@ class CommanderServiceProvider extends ServiceProvider {
         $this->registerCommandTranslator();
 
         $this->registerCommandBus();
-
-        $this->registerArtisanCommand();
     }
 
     /**
@@ -56,21 +53,6 @@ class CommanderServiceProvider extends ServiceProvider {
 
             return new ValidationCommandBus($default, $app, $translator);
         });
-    }
-
-    /**
-     * Register the Artisan command
-     *
-     * @return void
-     */
-    public function registerArtisanCommand()
-    {
-        $this->app->bindShared('commander.command.make', function($app)
-        {
-            return $app->make('Laracasts\Commander\Console\CommanderGenerateCommand');
-        });
-
-        $this->commands('commander.command.make');
     }
 
 }
