@@ -36,7 +36,7 @@ class EventDispatcher {
         {
             $eventName = $this->getEventName($event);
 
-            $this->event->fire($eventName, $event);
+            $this->event->dispatch($eventName, $event);
 
             $this->log->info("{$eventName} was fired.");
         }
