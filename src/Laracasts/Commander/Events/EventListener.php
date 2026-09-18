@@ -10,8 +10,16 @@ abstract class EventListener {
      * @param $event
      * @return mixed
      */
-    public function handle($event)
+    public function handle($event, $payload = [])
     {
+        // L13's event dispatcher invokes wildcard listeners as ($eventName, $payload);
+        // the pre-L5 dispatcher passed the event object directly. Support both so the
+        // whenX() handlers keep receiving the event object.
+        if (is_string($event) && isset($payload[0]) && is_object($payload[0]))
+        {
+            $event = $payload[0];
+        }
+
         $eventName = $this->getEventName($event);
 
         if ($this->listenerIsRegistered($eventName))
