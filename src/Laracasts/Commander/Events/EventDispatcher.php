@@ -1,7 +1,7 @@
 <?php namespace Laracasts\Commander\Events;
 
 use Illuminate\Events\Dispatcher;
-use Illuminate\Log\Writer;
+use Illuminate\Log\Logger as Writer;
 
 class EventDispatcher {
 
